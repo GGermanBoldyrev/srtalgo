@@ -1,37 +1,31 @@
 <?php
 
-// Массив в котором ищем нужный элемент     c
-$arrayToSearch = [14, 2, 4, 1, 3, 7, 13, 6, 8, 11, 9, 10, 12, 5, 15, 16];
+// Отсортированный массив в котором ищем нужный элемент
+$arrayToSearch = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 // Искомый элемент
-$item = 11;
+$item = 12;
 
 // Функция бинарного поиска
-function bunarySearch($array, $item) {
-    $count = 0;
-    // Задаем координаты начала, конца и середины массива
+function binarySearch($array, $item): int
+{
     $start = 0;
     $end = count($array) - 1;
-    $center = round(count($array) / 2, 0, PHP_ROUND_HALF_DOWN);
-    // Если число находится в середине, возращаем
-    if ($array[$center] === $item) {
-        $count++;
-        return $center . ' ' . $count;
-    }
-    // Проходимся по массиву до тех пор, пока не дойдем до середины
-    while ($end > $start) {
-        $count++;
-        // Если числа в итерации совпадают с искомым числом, то возвращвем позицию элемента
-        if ($array[$start] === $item) {
-            return $start . ' ' . $count;
-        } elseif ($array[$end] === $item) {
-            return $end . ' ' . $count;
+    while ($start <= $end) {
+        // Для каждой итерации находим центр массива
+        $middle = round(($start + $end) / 2);
+        // Возвращаем найденное значение если оно находится в центре массива
+        if ($item === $array[$middle]) {
+            return $middle;
+        // Если искомый элемент меньше середины, то сокращаем правую часть
+        } else if ($item < $array[$middle]) {
+            $end = $middle - 1;
+        // Если искомый элемент больше середины, то сокращаем левую часть
+        } else {
+            $start = $middle + 1;
         }
-        $start += 1;
-        $end -= 1;
     }
-    // Если числа в массиве не оказалось, возвращаем
-    return $item . "net v massive";
+    return -1;
 }
 
 // Вызываем функцию
-echo bunarySearch($arrayToSearch, $item);
+echo binarySearch($arrayToSearch, $item);
