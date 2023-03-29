@@ -1,8 +1,5 @@
 <?php
 
-// Число для поиска фокториала
-$number = 5;
-
 // Функция для поиска факториала числа, которое мы в нее передаем
 function factorial($n): int
 {
@@ -14,4 +11,21 @@ function factorial($n): int
 }
 
 // Выводим факториал числа
-echo factorial($number);
+echo factorial(5);
+
+echo '<br>';
+
+// Функция для поиска числа Фибоначчи, которое мы в нее передаем
+function fibonacci($num): int
+{
+    if ($num == 0) {
+        return 0;
+    } else if ($num == 1) {
+        return 1;
+    } else {
+        return fibonacci($num - 1) + fibonacci($num - 2);
+    }
+}
+
+// Вызываем функцию
+echo fibonacci(12);
