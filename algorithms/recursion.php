@@ -1,17 +1,17 @@
 <?php
 
 // Число для поиска фокториала
-$factorialOf = 5;
+$number = 5;
 
 // Функция для поиска факториала числа, которое мы в нее передаем
-function factorial($n)
+function factorial($n): int
 {
-    if ($n == 1) {
+    if ($n <= 1) {
         return 1;
     } else {
-       return 0;
+        return $n * factorial($n - 1);
     }
 }
 
 // Выводим факториал числа
-echo factorial($factorialOf);
+echo factorial($number);
